@@ -1,1 +1,6 @@
-void main(List<String> args) {}
+import 'package:black_eye_workout/src/app.dart';
+import 'package:flutter/material.dart';
+
+void main(List<String> args) {
+  runApp(const App());
+}

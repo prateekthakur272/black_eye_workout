@@ -1,7 +1,8 @@
 import 'package:black_eye_workout/src/models/exercise.dart';
 import 'package:black_eye_workout/src/models/workout.dart';
+import 'package:flutter/material.dart';
 
-class WorkoutRepository {
+class WorkoutRepository extends ChangeNotifier {
   static final List<Workout> _workouts = [
     Workout(name: 'Upper Body', exercises: [
       Exercise(
@@ -13,32 +14,35 @@ class WorkoutRepository {
     ]),
   ];
 
-  static List<Workout> get workouts => _workouts;
+  List<Workout> get workouts => _workouts;
 
-  static void addWorkout(String name) {
+  void addWorkout(String name) {
     _workouts.add(Workout(name: name, exercises: []));
+    notifyListeners();
   }
 
-  static void addExercise(String workoutName, Exercise exercise) {
+  void addExercise(String workoutName, Exercise exercise) {
     final workout = getWorkoutByName(workoutName);
     workout.exercises.add(exercise);
+    notifyListeners();
   }
 
-  static void checkOffExercise(String workoutName, String exerciseName) {
+  void checkOffExercise(String workoutName, String exerciseName) {
     final workout = getWorkoutByName(workoutName);
     final exercise = getExerciseByName(exerciseName, workout);
     exercise.isCompleted = !exercise.isCompleted;
+    notifyListeners();
   }
 
-  static int numberOfExerciseInWorkout(String workoutName) {
+  int numberOfExerciseInWorkout(String workoutName) {
     return getWorkoutByName(workoutName).exercises.length;
   }
 
-  static Workout getWorkoutByName(String name) {
+  Workout getWorkoutByName(String name) {
     return _workouts.firstWhere((element) => element.name == name);
   }
 
-  static Exercise getExerciseByName(String exerciseName, Workout workout) {
+  Exercise getExerciseByName(String exerciseName, Workout workout) {
     return workout.exercises
         .firstWhere((element) => element.name == exerciseName);
   }
