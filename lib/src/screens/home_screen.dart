@@ -1,3 +1,4 @@
+import 'package:black_eye_workout/src/components/heat_map.dart';
 import 'package:black_eye_workout/src/repository/workout_repository.dart';
 import 'package:black_eye_workout/src/screens/workout_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,25 +14,40 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void initState() {
+    super.initState();
+    Provider.of<WorkoutRepository>(context, listen: false).initializeWorkouts();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Black Eye'),
       ),
       body: Consumer<WorkoutRepository>(
-          builder: (context, value, child) => ListView.builder(
-              itemCount: value.workouts.length,
-              itemBuilder: (context, index) => ListTile(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => WorkoutScreen(
-                                  name: value.workouts[index].name)));
-                    },
-                    title: Text(value.workouts[index].name),
-                    trailing: const Icon(Icons.arrow_forward_ios),
-                  ))),
+          builder: (context, value, child) => ListView(
+                children: [
+                  MyHeatMap(
+                      datasets: value.heatMapData,
+                      startDate: value.getStartDate()),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: value.workouts.length,
+                      itemBuilder: (context, index) => ListTile(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => WorkoutScreen(
+                                          name: value.workouts[index].name)));
+                            },
+                            title: Text(value.workouts[index].name),
+                            trailing: const Icon(Icons.arrow_forward_ios),
+                          )),
+                ],
+              )),
       floatingActionButton: FloatingActionButton(
         onPressed: _createWorkout,
         child: const Icon(Icons.add),
