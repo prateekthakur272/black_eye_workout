@@ -1,16 +1,24 @@
-# black_eye_workout
+# BlackEye
 
-A new Flutter project.
+Track gym workouts and exercise easily on your phone with black eye workout tracker
 
 ## Getting Started
+1. Clone project repository
+```shell
+git clone https://github.com/prateekthakur272/black_eye_workout
+```
 
-This project is a starting point for a Flutter application.
+2. Install dependencies
+```shell
+flutter pub get
+```
 
-A few resources to get you started if this is your first Flutter project:
+3. Run Project
+```shell
+flutter run
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Preview
+<img width="529" alt="image" src="https://github.com/prateekthakur272/black_eye_workout/assets/67188426/f9ce0ef2-e0fd-4cbd-84ae-c8d6e8ee4e24">
+<img width="529" alt="image" src="https://github.com/prateekthakur272/black_eye_workout/assets/67188426/1852a225-77c3-4bf0-af65-9e8613f70cd1">
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
