@@ -16,7 +16,7 @@ class MyHeatMap extends StatelessWidget {
         endDate: DateTime.now().add(const Duration(days: 0)),
         datasets: datasets,
         colorMode: ColorMode.color,
-        defaultColor: Colors.grey.shade200,
+        defaultColor: Colors.grey.shade400,
         textColor: Colors.white,
         showColorTip: false,
         showText: true,
